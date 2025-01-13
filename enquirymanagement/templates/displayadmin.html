@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show all user data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        body{
+            background-color: cadetblue!important;
+        }
+        table{
+            width: 70%!important;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbaradmin.html' %}
+    <br>
+	<br>
+	<center><h3 style=" margin-bottom: 0px;"class = 'alert alert-success'>All User Enquiry Information</h3></center>
+
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Contact</th>
+              <th>Address</th>
+              <th>Query</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          {% for i in enqdata %}
+          <tbody>
+              <tr>
+                  <td>{{i.Name}}</td>
+                  <td>{{i.Email}}</td>
+                  <td>{{i.Contact}}</td>
+                  <td>{{i.Address}}</td>
+                  <td>{{i.Query}}</td>
+                  <td>
+                      <a href="{% url 'updatedata' i.id %}"><img src="{% static 'images/edit.jpg' %}" width="30px" height="30px" alt="Edit">
+                     </a>
+                    </td>
+                  <td>
+                    <a href="{% url 'deletedata' i.id %}"><img src="{% static 'images/delete.png' %}" width="30px" height="30px" alt="Delete">
+                    </a>
+                    </td>
+              </tr>
+          </tbody>
+          {% endfor %}
+      </table>
+</body>
+</html>
